@@ -1,0 +1,20 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "6479632616.kr.wefun.app",
+        "paths": [
+          "/id/code/",
+          "/email/code/"
+         ]
+      }
+    ]
+  }
+  "activitycontinuation": {
+    "apps": ["6479632616.kr.wefun.app"]
+  },
+  "webcredentials": {
+    "apps": ["6479632616.kr.wefun.app"]
+  }
+}
