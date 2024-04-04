@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, Linking, Pressable, Platform } from 'react-native';
 
 const SCHEME = 'kr.wefun.app://'
@@ -17,6 +17,8 @@ const APP_INFOS = {
 // }
 
 export default function Page() {
+  const [cancan, setCancan] = useState<boolean | null>(null)
+
   const handleOpenUrl = async () => {
     const url = await Linking.getInitialURL();
     const match = url?.match(/\?([^&]+)/);
@@ -40,7 +42,10 @@ export default function Page() {
     }) => {
     try {
       const canOpen = await Linking.canOpenURL(url)
-      if (canOpen) await handleOpenUrl()
+
+      console.log(setCancan(canOpen))
+
+      // if (canOpen) await handleOpenUrl()
     } catch(e: any) {
       if (e.code === 'EUNSPECIFIED') {
         await handeOpenStore(APP_INFOS)
@@ -83,6 +88,7 @@ export default function Page() {
         />
         <Text>Wefun</Text>
         <Text>{JSON.stringify(Platform)}</Text>
+        <Text>{JSON.stringify(cancan)}</Text>
       </Pressable>
     </View>
   );
