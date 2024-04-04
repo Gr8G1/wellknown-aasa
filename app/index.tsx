@@ -30,16 +30,7 @@ export default function Page() {
     }
   };
 
-  const canOpenURL = async (
-    url: string,
-    {
-      appStoreLocale = 'ko',
-      appName,
-      appStoreId,
-      playStoreId
-    }: {
-      [key: string]: string
-    }) => {
+  const canOpenURL = async (url: string) => {
     try {
       const canOpen = await Linking.canOpenURL(url)
 
@@ -50,14 +41,12 @@ export default function Page() {
       if (e.code === 'EUNSPECIFIED') {
         await handeOpenStore(APP_INFOS)
       } else {
-        throw new Error(`Could not open ${appName}. ${e.toString()}`);
+        throw new Error(`Could not open ${url}. ${e.toString()}`);
       }
     }
   };
 
-  const handeOpenStore = async ({ appStoreLocale = 'ko', appName, appStoreId, playStoreId }:{
-    [key: string]: string
-  }) => {
+  const handeOpenStore = async ({ appStoreLocale = 'ko', appName, appStoreId, playStoreId }: { [key: string]: string }) => {
     if (Platform.OS === 'ios') {
       await Linking.openURL(`https://apps.apple.com/${appStoreLocale}/app/${appName}/id${appStoreId}`);
     } else {
@@ -67,7 +56,7 @@ export default function Page() {
 
   const handleLinking = async () => {
     try {
-      await canOpenURL(SCHEME, APP_INFOS)
+      await canOpenURL(SCHEME)
     } catch (e: any) {
       console.log(e.message)
     }
@@ -81,7 +70,7 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.press} onPress={() => handeOpenStore(APP_INFOS)}>
+      <Pressable style={styles.press} onPress={() => canOpenURL(SCHEME)}>
         <Image
           style={styles.logo}
           source={require('@/assets/logo.png')}
