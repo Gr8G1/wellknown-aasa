@@ -1,20 +1,51 @@
 {
   "applinks": {
-    "apps": [],
     "details": [
       {
         "appID": "6479632616.kr.wefun.app",
-        "paths": [
-          "/id/code/",
-          "/email/code/"
-         ]
+        "components": [
+          {
+            "#": "no_universal_links",
+            "exclude": true,
+            "comment": "Matches any URL whose fragment equals no_universal_links and instructs the system not to open it as a universal link"
+          },
+          {
+            "/": "/home/*",
+            "comment": "Matches any URL whose path starts with /home/"
+          },
+          {
+            "/": "/id/*",
+            "?": {
+              "ac": "??????"
+            },
+            "comment": "Matches any URL whose path starts with / and which has a query item with name 'ac' and a value of exactly 6 characters"
+          },
+          {
+            "/": "/email/*",
+            "?": {
+              "ac": "??????"
+            },
+            "comment": "Matches any URL whose path starts with / and which has a query item with name 'ac' and a value of exactly 6 characters"
+          },
+          {
+           "/": "/qr/*",
+           "?": {
+             "ac": "??????"
+           },
+           "comment": "Matches any URL whose path starts with / and which has a query item with name 'ac' and a value of exactly 6 characters"
+         }
+        ]
       }
     ]
-  }
+  },
   "activitycontinuation": {
-    "apps": ["6479632616.kr.wefun.app"]
+    "apps": [
+      "6479632616.kr.wefun.app"
+    ]
   },
   "webcredentials": {
-    "apps": ["6479632616.kr.wefun.app"]
+    "apps": [
+      "6479632616.kr.wefun.app"
+    ]
   }
 }
