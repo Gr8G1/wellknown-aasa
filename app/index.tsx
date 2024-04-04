@@ -30,6 +30,17 @@ export default function Page() {
     }
   };
 
+  const handleOpen = async () => {
+    const url = await Linking.getInitialURL();
+    const match = url?.match(/\?([^&]+)/);
+
+    if (!!match && ['id', 'email', 'qr'].some((v) => match[1].startsWith(v))) {
+      const path = match[1].split('=')
+
+      await Linking.openURL(url!).catch((e) => {})
+    }
+  };
+
   const canOpenURL = async (url: string) => {
     try {
       const canOpen = await Linking.canOpenURL(url)
@@ -71,6 +82,15 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <Pressable style={styles.press} onPress={() => canOpenURL(SCHEME)}>
+        <Image
+          style={styles.logo}
+          source={require('@/assets/logo.png')}
+        />
+        <Text>Wefun</Text>
+        <Text>{JSON.stringify(Platform)}</Text>
+        <Text>{JSON.stringify(cancan)}</Text>
+      </Pressable>
+      <Pressable style={styles.press} onPress={() => handleOpen()}>
         <Image
           style={styles.logo}
           source={require('@/assets/logo.png')}
