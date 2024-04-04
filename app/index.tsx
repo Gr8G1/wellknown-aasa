@@ -1,43 +1,41 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { View, Text, StyleSheet, Image, Linking } from 'react-native';
 import { A } from "@expo/html-elements";
 
 const BASE_URI = 'kr.wefun.app://'
 
 export default function Page() {
+  const [uriSource, setUriSource] = useState<string | null>(null)
   const aRef = useRef(null);
 
   useEffect(() => {
-    const handleDOMContentLoaded = async () => {
-      const linkingUri = await Linking.getInitialURL();
 
-      let baseUri = BASE_URI;
 
-      if (linkingUri) {
-        baseUri = linkingUri.split('?link=')[1];
-      }
+    Linking.openURL('')
+  }, []);
 
-      if (aRef.current) {
-        const link = aRef.current;
+  const handleUrl = async (event: { url: string }) => {
+    const url = event.url;
+    const route = url.replace(/.*?:\/\//g, '');
 
-        console.log(link)
-        
-        // link.props.href = link.props.href.replace('exp://REPLACE_ME/', baseUri);
-      }
+    if (route.includes('details')) {
+      const id = route.split('/').pop();
+      console.log(`Navigating to Detail screen with id: ${id}`);
+      // navigate to the Detail screen with the appropriate id
+    }
+  };
 
-      const redirectInterval = setInterval(() => {
-        // Code for countdown
-      }, 1000);
+  useEffect(() => {
+    Linking.addEventListener('url', handleUrl);
 
-      return () => clearInterval(redirectInterval);
+    return () => {
+      Linking.removeAllListeners('url');
     };
-
-    handleDOMContentLoaded();
   }, []);
 
   return (
     <View style={styles.container}>
-      <A ref={aRef}>
+      <A ref={aRef} href={BASE_URI}>
         <View style={styles.aTag}>
           <Image
             style={styles.logo}
