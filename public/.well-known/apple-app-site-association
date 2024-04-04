@@ -1,8 +1,9 @@
 {
   "applinks": {
+    "apps": [],
     "details": [
       {
-        "appID": "6479632616.kr.wefun.app",
+        "appID": "Z7K6J6Z368.kr.wefun.app",
         "components": [
           {
             "#": "no_universal_links",
@@ -38,14 +39,9 @@
       }
     ]
   },
-  "activitycontinuation": {
-    "apps": [
-      "6479632616.kr.wefun.app"
-    ]
-  },
   "webcredentials": {
     "apps": [
-      "6479632616.kr.wefun.app"
+      "Z7K6J6Z368.kr.wefun.app"
     ]
   }
 }
