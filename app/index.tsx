@@ -39,6 +39,8 @@ export default function Page() {
       [key: string]: string
     }) => {
     try {
+      console.log(Platform)
+      
       if (Platform.OS !== 'web') {
         const canOpen = await Linking.canOpenURL(url)
 
