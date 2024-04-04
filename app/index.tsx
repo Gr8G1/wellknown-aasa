@@ -39,24 +39,11 @@ export default function Page() {
       [key: string]: string
     }) => {
     try {
-      console.log(Platform)
-
-      if (Platform.OS !== 'web') {
-        const canOpen = await Linking.canOpenURL(url)
-
-        if (canOpen) await handleOpenUrl()
-      }
+      const canOpen = await Linking.canOpenURL(url)
+      if (canOpen) await handleOpenUrl()
     } catch(e: any) {
       if (e.code === 'EUNSPECIFIED') {
-        if (Platform.OS === 'ios') {
-          const locale = typeof appStoreLocale === 'undefined'
-            ? 'ko'
-            : appStoreLocale;
-
-          await Linking.openURL(`https://apps.apple.com/${locale}/app/${appName}/id${appStoreId}`);
-        } else {
-          await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
-        }
+        await handeOpenStore(APP_INFOS)
       } else {
         throw new Error(`Could not open ${appName}. ${e.toString()}`);
       }
