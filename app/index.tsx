@@ -43,9 +43,9 @@ export default function Page() {
     try {
       const canOpen = await Linking.canOpenURL(url)
 
-      console.log(setCancan(canOpen))
+      setCancan(canOpen)
 
-      // if (canOpen) await handleOpenUrl()
+      if (canOpen) await handleOpenUrl()
     } catch(e: any) {
       if (e.code === 'EUNSPECIFIED') {
         await handeOpenStore(APP_INFOS)
