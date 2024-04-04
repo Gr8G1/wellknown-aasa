@@ -1,49 +1,92 @@
-import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, StyleSheet, Image, Linking } from 'react-native';
+import React, { useEffect, useRef } from 'react';
+import { View, Text, StyleSheet, Image, Linking, Pressable, Platform } from 'react-native';
+// import AppLink from 'react-native-app-link';
 import { A } from "@expo/html-elements";
 
-const BASE_URI = 'kr.wefun.app://'
+const SCHEME = 'kr.wefun.app://'
+const APP_INFOS = {
+  appName: '토스',
+  appStoreLocale: 'kr',
+  appStoreId: '839333328',
+  playStoreId: 'viva.republica.toss'
+}
+
+// const APP_INFOS = {
+//   appStoreLocale: 'kr',
+//   appName: 'wefun',
+//   appStoreId: '839333328',
+//   playStoreId: 'wefun'
+// }
 
 export default function Page() {
-  const [uriSource, setUriSource] = useState<string | null>(null)
-  const aRef = useRef(null);
+  const handleOpenUrl = async () => {
+    const url = await Linking.getInitialURL();
+    const match = url?.match(/\?([^&]+)/);
 
-  useEffect(() => {
+    if (!!match && ['id', 'email', 'qr'].some((v) => match[1].startsWith(v))) {
+      const path = match[1].split('=')
 
-
-    Linking.openURL('')
-  }, []);
-
-  const handleUrl = async (event: { url: string }) => {
-    const url = event.url;
-    const route = url.replace(/.*?:\/\//g, '');
-
-    if (route.includes('details')) {
-      const id = route.split('/').pop();
-      console.log(`Navigating to Detail screen with id: ${id}`);
-      // navigate to the Detail screen with the appropriate id
+      await Linking.openURL(`${SCHEME}${path[0]}/${path[1]}`).catch((e) => {})
     }
   };
 
-  useEffect(() => {
-    Linking.addEventListener('url', handleUrl);
+  const canOpenURL = async (
+    url: string,
+    {
+      appStoreLocale,
+      appName,
+      appStoreId,
+      playStoreId
+    }: {[key: string]: string}) => {
+    try {
+      if (Platform.OS !== 'web') {
+        const canOpen = Linking.canOpenURL(url)
 
-    return () => {
-      Linking.removeAllListeners('url');
-    };
+        await handleOpenUrl()
+      }
+    } catch(e: any) {
+      if (e.code === 'EUNSPECIFIED') {
+        if (Platform.OS === 'ios') {
+          const locale = typeof appStoreLocale === 'undefined'
+            ? 'ko'
+            : appStoreLocale;
+
+          await Linking.openURL(`https://apps.apple.com/${locale}/app/${appName}/id${appStoreId}`);
+        } else {
+          await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
+        }
+      } else {
+        throw new Error(`Could not open ${appName}. ${e.toString()}`);
+      }
+    }
+  };
+  
+  const handleLinking = async () => {
+    try {
+      await canOpenURL(SCHEME, APP_INFOS)
+    } catch (e: any) {
+      console.log(e.message)
+    }
+  }
+
+  useEffect(() => {
+    ;(async () => {
+      await handleLinking()
+    })()
+
+
+    // handleLinking()
   }, []);
 
   return (
     <View style={styles.container}>
-      <A ref={aRef} href={BASE_URI}>
-        <View style={styles.aTag}>
-          <Image
-            style={styles.logo}
-            source={require('@/assets/logo.png')}
-          />
-          <Text>Wefun</Text>
-        </View>
-      </A>
+      <Pressable style={styles.press} onPress={() => {}}>
+        <Image
+          style={styles.logo}
+          source={require('@/assets/logo.png')}
+        />
+        <Text>Wefun</Text>
+      </Pressable>
     </View>
   );
 }
@@ -54,7 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  aTag: {
+  press: {
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 24
