@@ -40,7 +40,7 @@ export default function Page() {
     }) => {
     try {
       console.log(Platform)
-      
+
       if (Platform.OS !== 'web') {
         const canOpen = await Linking.canOpenURL(url)
 
@@ -95,6 +95,7 @@ export default function Page() {
           source={require('@/assets/logo.png')}
         />
         <Text>Wefun</Text>
+        <Text>{JSON.stringify(Platform)}</Text>
       </Pressable>
     </View>
   );
@@ -109,7 +110,7 @@ const styles = StyleSheet.create({
   press: {
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom: 24
+    gap: 24
   },
   logo: {
     width: 120,
