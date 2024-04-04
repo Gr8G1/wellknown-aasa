@@ -1,7 +1,5 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, Linking, Pressable, Platform } from 'react-native';
-// import AppLink from 'react-native-app-link';
-import { A } from "@expo/html-elements";
 
 const SCHEME = 'kr.wefun.app://'
 const APP_INFOS = {
@@ -33,16 +31,18 @@ export default function Page() {
   const canOpenURL = async (
     url: string,
     {
-      appStoreLocale,
+      appStoreLocale = 'ko',
       appName,
       appStoreId,
       playStoreId
-    }: {[key: string]: string}) => {
+    }: {
+      [key: string]: string
+    }) => {
     try {
       if (Platform.OS !== 'web') {
-        const canOpen = Linking.canOpenURL(url)
+        const canOpen = await Linking.canOpenURL(url)
 
-        await handleOpenUrl()
+        if (canOpen) await handleOpenUrl()
       }
     } catch(e: any) {
       if (e.code === 'EUNSPECIFIED') {
@@ -60,7 +60,17 @@ export default function Page() {
       }
     }
   };
-  
+
+  const handeOpenStore = async ({ appStoreLocale = 'ko', appName, appStoreId, playStoreId }:{
+    [key: string]: string
+  }) => {
+    if (Platform.OS === 'ios') {
+      await Linking.openURL(`https://apps.apple.com/${appStoreLocale}/app/${appName}/id${appStoreId}`);
+    } else {
+      await Linking.openURL(`https://play.google.com/store/apps/details?id=${playStoreId}`);
+    }
+  };
+
   const handleLinking = async () => {
     try {
       await canOpenURL(SCHEME, APP_INFOS)
@@ -73,14 +83,11 @@ export default function Page() {
     ;(async () => {
       await handleLinking()
     })()
-
-
-    // handleLinking()
   }, []);
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.press} onPress={() => {}}>
+      <Pressable style={styles.press} onPress={() => handeOpenStore(APP_INFOS)}>
         <Image
           style={styles.logo}
           source={require('@/assets/logo.png')}
