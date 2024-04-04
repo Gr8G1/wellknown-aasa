@@ -5,9 +5,26 @@
       {
         "appID": "Z7K6J6Z368.kr.wefun.app",
         "paths": [
-          "/id/*",
-          "/email/*",
-          "/qr/*"
+          "NOT /id/*",
+          "NOT /email/*",
+          "NOT /qr/*"
+        ]
+      },
+      {
+        "appID": "Z7K6J6Z368.kr.wefun.app",
+        "components": [
+          {
+            "/": "/",
+            "?": {
+              "id": "*"
+            }
+          },
+          {
+            "/": "/",
+            "?": {
+              "qr": "*"
+            }
+          }
         ]
       }
     ]
