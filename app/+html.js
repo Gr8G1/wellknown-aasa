@@ -9,7 +9,7 @@ export default function Root({children}) {
       <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0"/>
       <title>Wefun</title>
       <meta name="description" content="Wefun"/>
-      <meta name="apple-itunes-app" content="app-id=6479632616"/>
+      <meta name="apple-itunes-app" content="app-id=Z7K6J6Z368"/>
 
       <ScrollViewStyleReset />
 

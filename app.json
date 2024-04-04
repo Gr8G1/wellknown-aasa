@@ -6,6 +6,15 @@
     "assetBundlePatterns": [
       "**/*"
     ],
+    "ios": {
+      "bundleIdentifier": "kr.wefun.app",
+      "buildNumber": "1.0.0",
+      "associatedDomains": ["applinks:wellknown-aasa.vercel.app"]
+    },
+    "android": {
+      "package": "kr.wefun.app",
+      "versionCode": 1
+    },
     "web": {
       "bundler": "metro",
       "output": "static"
