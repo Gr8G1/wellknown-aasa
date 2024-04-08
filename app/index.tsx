@@ -2,23 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, Linking, Pressable, Platform } from 'react-native';
 
 const SCHEME = 'kr.wefun.app://'
-const APP_INFOS = {
-  appName: '토스',
-  appStoreLocale: 'kr',
-  appStoreId: '839333328',
-  playStoreId: 'viva.republica.toss'
-}
-
 // const APP_INFOS = {
 //   appStoreLocale: 'kr',
-//   appName: 'wefun',
+//   appName: '토스',
 //   appStoreId: '839333328',
-//   playStoreId: 'wefun'
+//   playStoreId: 'viva.republica.toss'
 // }
 
-export default function Page() {
-  const [cancan, setCancan] = useState<boolean | null>(null)
+const APP_INFOS = {
+  appStoreLocale: 'kr',
+  appName: 'wefun',
+  appStoreId: '6479632616',
+  playStoreId: 'wefun'
+}
 
+export default function Page() {
   const handleOpenUrl = async () => {
     const url = await Linking.getInitialURL();
     const match = url?.match(/\?([^&]+)/);
@@ -30,22 +28,9 @@ export default function Page() {
     }
   };
 
-  const handleOpen = async () => {
-    const url = await Linking.getInitialURL();
-    const match = url?.match(/\?([^&]+)/);
-
-    if (!!match && ['id', 'email', 'qr'].some((v) => match[1].startsWith(v))) {
-      const path = match[1].split('=')
-
-      await Linking.openURL(url!).catch((e) => {})
-    }
-  };
-
   const canOpenURL = async (url: string) => {
     try {
       const canOpen = await Linking.canOpenURL(url)
-
-      setCancan(canOpen)
 
       if (canOpen) await handleOpenUrl()
     } catch(e: any) {
@@ -82,15 +67,6 @@ export default function Page() {
   return (
     <View style={styles.container}>
       <Pressable style={styles.press} onPress={() => canOpenURL(SCHEME)}>
-        <Image
-          style={styles.logo}
-          source={require('@/assets/logo.png')}
-        />
-        <Text>Wefun</Text>
-        <Text>{JSON.stringify(Platform)}</Text>
-        <Text>{JSON.stringify(cancan)}</Text>
-      </Pressable>
-      <Pressable style={styles.press} onPress={() => handleOpen()}>
         <Image
           style={styles.logo}
           source={require('@/assets/logo.png')}
