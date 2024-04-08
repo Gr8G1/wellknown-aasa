@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Image, Linking, Pressable, Platform } from 'react-native';
 
 const SCHEME = 'kr.wefun.app://'
+const SCHEME_URLs = 'kr.wefun.app://'
+
 // const APP_INFOS = {
 //   appStoreLocale: 'kr',
 //   appName: '토스',
@@ -51,6 +53,7 @@ export default function Page() {
   };
 
   const handleLinking = async () => {
+    console.log(SCHEME)
     try {
       await canOpenURL(SCHEME)
     } catch (e: any) {
