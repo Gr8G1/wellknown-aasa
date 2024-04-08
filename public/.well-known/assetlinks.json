@@ -1,0 +1,11 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "kr.wefun.app",
+      "sha256_cert_fingerprints":
+      ["94:76:E2:37:54:A4:3A:D4:B6:EB:4C:10:D2:03:B5:3C:47:DF:FD:73:50:01:BF:06:E5:94:02:7F:FD:C8:4A:49"]
+    }
+  }
+]
