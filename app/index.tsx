@@ -73,7 +73,6 @@ export default function Page() {
         />
         <Text>Wefun</Text>
         <Text>{JSON.stringify(Platform)}</Text>
-        <Text>{JSON.stringify(cancan)}</Text>
       </Pressable>
     </View>
   );
