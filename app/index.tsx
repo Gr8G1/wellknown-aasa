@@ -10,8 +10,8 @@ export default function Page() {
     'https://bpfzl-alternate.test-app.link',
     'https://bpfzl.test-app.link?id=test',
     'https://bpfzl-alternate.test-app.link?qr=1234',
-    'https://bpfzl.test-app.link/k5VEWRwDOIb',
-    'https://bpfzl-alternate.test-app.link/k5VEWRwDOIb',
+    'https://bpfzl.test-app.link/k5VEWRwDOIb?debug=1',
+    'https://bpfzl-alternate.test-app.link/k5VEWRwDOIb?stats=1',
   ], [])
 
   return (
