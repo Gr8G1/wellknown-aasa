@@ -7,7 +7,7 @@ export default function Page() {
     'https://bpfzl.app.link',
     'https://bpfzl-alternate.app.link',
     'https://bpfzl.test-app.link',
-    'https://bpfzl-alternate.test-app.link'
+    'https://bpfzl-alternate.test-app.link',
     'https://bpfzl.test-app.link?id=test',
     'https://bpfzl-alternate.test-app.link?qr=1234'
   ], [])
