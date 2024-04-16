@@ -6,8 +6,9 @@ export default function Page() {
   const universalLink = useMemo(() => [
     'https://bpfzl.app.link/', // Default Link
     'https://bpfzl.app.link/B5selbnUPIb', // Quick Link (Created Web)
-    'https://bpfzl.app.link/kuUQuiq1PIb',  // Quick Link (Created API)
-    'https://bpfzl.app.link/ed2yBRX1PIb',  // Quick Link (Created API)
+    'https://bpfzl.app.link/kuUQuiq1PIb',  // Quick Link 1 (Created API)
+    'https://bpfzl.app.link/ed2yBRX1PIb',  // Quick Link 2 (Created API)
+    'https://bpfzl.app.link/ed2yBRX1PIb',  // Quick Link 3 (Created API)
   ], [])
 
   return (
