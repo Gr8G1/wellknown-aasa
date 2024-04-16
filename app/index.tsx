@@ -12,6 +12,7 @@ export default function Page() {
     'https://bpfzl-alternate.test-app.link?qr=1234',
     'https://bpfzl.test-app.link/k5VEWRwDOIb',
     'https://bpfzl-alternate.test-app.link/k5VEWRwDOIb',
+    'https://bpfzl.app.link/bv7kfXUuPIb',
   ], [])
 
   return (
