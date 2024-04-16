@@ -4,11 +4,10 @@ import { View, Text, StyleSheet, Linking, Pressable } from 'react-native';
 
 export default function Page() {
   const universalLink = useMemo(() => [
-    'https://bpfzl.app.link',
-    'https://bpfzl-alternate.app.link',
-    'https://bpfzl.test-app.link',
-    'https://bpfzl-alternate.test-app.link',
-    'https://bpfzl.test-app.link/branch/ZXC1019X',
+    'https://bpfzl.test-app.link/',
+    'https://bpfzl.test-app.link/welcome/Hello',
+    'https://bpfzl.test-app.link/branch/ASDZXC',
+    'https://bpfzl.test-app.link/invite/ZXCVBN',
   ], [])
 
   return (
