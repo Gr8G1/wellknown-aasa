@@ -8,18 +8,13 @@ export default function Page() {
     'https://bpfzl-alternate.app.link',
     'https://bpfzl.test-app.link',
     'https://bpfzl-alternate.test-app.link',
-    'https://bpfzl.test-app.link?id=test',
-    'https://bpfzl-alternate.test-app.link?qr=1234',
-    'https://bpfzl.test-app.link/k5VEWRwDOIb',
-    'https://bpfzl-alternate.test-app.link/k5VEWRwDOIb',
-    'https://bpfzl.app.link/bv7kfXUuPIb',
+    'https://bpfzl.test-app.link/branch/ZXC1019X',
   ], [])
 
   return (
     <View style={styles.container}>
       {universalLink.map((link) => (
         <Pressable key={link} style={styles.press} onPress={() => Linking.openURL(link)}>
-          <Text>Wefun</Text>
           <Text>{link}</Text>
         </Pressable>
       ))}
