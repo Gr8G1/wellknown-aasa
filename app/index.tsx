@@ -6,7 +6,7 @@ export default function Page() {
   const universalLink = useMemo(() => [
     'https://bpfzl.app.link',
     'https://bpfzl.app.link/branch/test',
-    'https://bpfzl.app.link/testest',
+    'https://bpfzl.app.link/B5selbnUPIb',
   ], [])
 
   return (
