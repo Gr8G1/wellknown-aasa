@@ -7,7 +7,8 @@ export default function Page() {
     {
       link: 'https://bpfzl.app.link/hLaH7BP2PIb',
       data: 'inviteCode: ZXCASDQWE'
-    },{
+    },
+    {
       link: 'https://bpfzl.app.link/vgWDioGLRIb',
       data: 'inviteCode: QWEASDZXC'
     }
@@ -15,10 +16,10 @@ export default function Page() {
 
   return (
     <View style={styles.container}>
-      {universalLink.map(({ link, data}) => (
+      {universalLink.map(({ link, data }) => (
         <Pressable key={link} style={styles.press} onPress={() => Linking.openURL(link)}>
-          <Text>{link}</Text>
           <Text>{data}</Text>
+          <Text>{link}</Text>
         </Pressable>
       ))}
     </View>
@@ -30,11 +31,11 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 12
+    gap: 24
   },
   press: {
     justifyContent: 'center',
     alignItems: 'center',
-    gap: 24
+    gap: 8
   },
 });
