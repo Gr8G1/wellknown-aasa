@@ -5,12 +5,12 @@ import { View, Text, StyleSheet, Linking, Pressable } from 'react-native';
 export default function Page() {
   const universalLink = useMemo(() => [
     {
-      link: 'https://bpfzl.app.link/hLaH7BP2PIb',
-      data: 'inviteCode: ZXCASDQWE'
+      link: 'https://0j6en.app.link/WHJ4ksz6aJb',
+      data: 'inviteCode: QWEASDZXC'
     },
     {
-      link: 'https://bpfzl.app.link/vgWDioGLRIb',
-      data: 'inviteCode: QWEASDZXC'
+      link: 'https://0j6en.app.link/4YnFDLB6aJb',
+      data: 'inviteCode: ASDQWE'
     }
   ], [])
 
